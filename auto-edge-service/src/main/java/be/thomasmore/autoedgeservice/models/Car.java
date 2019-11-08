@@ -7,7 +7,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Car {
 
-    private Integer _id;
+    private int _id;
     private String make;
     private String model;
     private String type;
@@ -30,9 +30,26 @@ public class Car {
         this.userId = userId;
     }
 
-    public Integer get_id() {
+    public int get_id() {
         return _id;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
 
     public String getMake() {
         return make;
@@ -49,15 +66,6 @@ public class Car {
     public void setModel(String model) {
         this.model = model;
     }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
 
     public Integer getYear() {
         return year;
@@ -97,10 +105,6 @@ public class Car {
 
     public void setDoors(Integer doors) {
         this.doors = doors;
-    }
-
-    public Integer getUserId() {
-        return userId;
     }
 
     public void setUserId(Integer userId) {

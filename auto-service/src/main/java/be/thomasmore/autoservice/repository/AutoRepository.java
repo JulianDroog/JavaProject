@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface AutoRepository extends MongoRepository<Auto, String> {
 
-    //List<Auto> getCarsByUserId(@Param("userId") Integer userId);
+    List<Auto> getCarsByUserId(@Param("userId") Integer userId);
 
 }

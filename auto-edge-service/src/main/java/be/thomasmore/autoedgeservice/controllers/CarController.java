@@ -26,9 +26,9 @@ public class CarController {
         return new Car(carId, "test car");
     }*/
 
-    @PostMapping("/car")
-    public ResponseEntity<String> postCar(String make, String model, String type, Integer year, String transmission, Integer cc, Integer hp, Integer doors, Integer userId){
-        Car car = new Car(make, model, type, year, transmission, cc, hp, doors, userId);
+    @PostMapping("/car/{userId}")
+    public ResponseEntity<String> postCarByUserId(@PathVariable("userId") int userId, Car auto){
+        Car car = new Car(auto.getMake(), auto.getModel(), auto.getType(), auto.getYear(), auto.getTransmission(), auto.getCc(), auto.getHp(), auto.getDoors(), userId);
 
         ResponseEntity<String> result = restTemplate.postForEntity(
                 "http://auto-service/autos/", car, String.class

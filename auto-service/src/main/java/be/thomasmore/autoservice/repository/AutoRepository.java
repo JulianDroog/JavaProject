@@ -7,5 +7,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface AutoRepository extends MongoRepository<Auto, String> {
-    List<Auto> findAutoByUserId(@Param("userId") Integer userId);
+
+    //List<Auto> getCarsByUserId(@Param("userId") Integer userId);
+
 }

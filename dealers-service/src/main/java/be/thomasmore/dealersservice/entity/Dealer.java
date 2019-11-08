@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collation = "dealer")
 public class Dealer {
     @Id
-    private String id;
+    private int id;
     private String name;
     private String street;
     private String number;
@@ -23,11 +23,11 @@ public class Dealer {
     public Dealer() {
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

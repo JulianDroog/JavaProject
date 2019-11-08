@@ -25,7 +25,7 @@ public class AutoEdgeServiceApplication {
 		public Docket api() {
 			return new Docket(DocumentationType.SWAGGER_2)
 					.select()
-					.apis(RequestHandlerSelectors.any())
+					.apis(RequestHandlerSelectors.basePackage("your package"))
 					.paths(PathSelectors.any())
 					.build();
 		}

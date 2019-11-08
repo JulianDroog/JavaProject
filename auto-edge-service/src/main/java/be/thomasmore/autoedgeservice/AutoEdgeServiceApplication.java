@@ -1,6 +1,7 @@
 package be.thomasmore.autoedgeservice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Predicates;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -25,8 +26,9 @@ public class AutoEdgeServiceApplication {
 		public Docket api() {
 			return new Docket(DocumentationType.SWAGGER_2)
 					.select()
-					.apis(RequestHandlerSelectors.basePackage("your package"))
-					.paths(PathSelectors.any())
+					.apis(RequestHandlerSelectors.any())
+					//.paths(PathSelectors.any())
+					.paths(Predicates.not(PathSelectors.regex("/error.*")))
 					.build();
 		}
 	}

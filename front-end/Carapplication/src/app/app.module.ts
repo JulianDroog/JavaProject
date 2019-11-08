@@ -5,12 +5,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SecurityComponent } from './security/security/security.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { YearsModule } from './years/years.module';
+import { CarsComponent } from './cars/cars/cars.component';
+import { CarsModule } from './cars/cars.module';
+import { MatSidenavModule, MatListModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
-  { path: '', component: SecurityComponent }
+  { path: '', component: SecurityComponent },
+  { path: 'cars', component: CarsComponent }
   ];
 
 @NgModule({
@@ -23,8 +29,14 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true })
+    RouterModule.forRoot(appRoutes, { enableTracing: true }),
+    YearsModule, 
+    CarsModule,
+    MatSidenavModule,
+    MatListModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

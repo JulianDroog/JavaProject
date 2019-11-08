@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarsComponent } from './cars/cars.component';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatFormFieldModule, MatButtonModule, MatSelectModule, MatOptionModule, MatInputModule } from '@angular/material';
 
 
 @NgModule({
   declarations: [CarsComponent],
   imports: [
-    CommonModule
+    CommonModule, FormsModule,
+    MatFormFieldModule, 
+    MatButtonModule, MatSelectModule, ReactiveFormsModule, MatInputModule, MatOptionModule
+  ],
+  exports: [
+    CarsComponent
   ]
 })
 export class CarsModule { }

@@ -1,1 +1,23 @@
-<p>cars works!</p>
+<h2>Zoek een auto</h2>
+<form [formGroup]="carForm"  >
+    <p>{{ carForm.value | json}}</p>
+        <div>
+          <label>Jaartal:</label>
+          <select class="form-control" *ngIf="yearsMinMax" formControlName="year" #year (change)="onChooseYear(year.value)">
+              <option value="" disabled selected>Selecteer een jaar </option>
+            <option *ngFor="let year of allYears" [value]="year">
+              {{year}}
+            </option>
+          </select>
+        </div>
+
+        <div *ngIf="showMake">
+            <label>Merk:</label>
+            <select class="form-control" *ngIf="listMakes" formControlName="make" #make (change)="onChooseMake(make.value)">
+                <option value="" disabled selected>Selecteer een merk </option>
+              <option *ngFor="let make of listMakes" [value]="make">
+                {{make}}
+              </option>
+            </select>
+          </div>
+</form>

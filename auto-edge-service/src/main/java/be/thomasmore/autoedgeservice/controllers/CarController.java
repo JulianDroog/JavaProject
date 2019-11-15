@@ -6,6 +6,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,14 +23,9 @@ public class CarController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    /*@RequestMapping("/{carId}")
-    public Car getCarInfo(@PathVariable("carId") int carId) {
-        return new Car(carId, "test car");
-    }*/
-
-    @PostMapping("/car/{userId}")
-    public ResponseEntity<String> postCarByUserId(@PathVariable("userId") int userId, Car auto){
-        Car car = new Car(auto.getMake(), auto.getModel(), auto.getType(), auto.getYear(), auto.getTransmission(), auto.getCc(), auto.getHp(), auto.getDoors(), userId);
+    @PostMapping("/car")
+    public ResponseEntity<String> postCar(@RequestBody Car auto){
+        Car car = new Car(auto.getMake(), auto.getModel(), auto.getType(), auto.getYear(), auto.getTransmission(), auto.getCc(), auto.getHp(), auto.getDoors(), auto.getUserId());
 
         ResponseEntity<String> result = restTemplate.postForEntity(
                 "http://auto-service/autos/", car, String.class
@@ -37,15 +34,32 @@ public class CarController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{carId}")
-    public List<Car> getCarsByUserId(@PathVariable("userid") Integer userId){
+    @GetMapping("/{userId}")
+    public List<Car> getCarsByUserId(@PathVariable("userId") Integer userId){
         GenericResponseWrapper wrapper = restTemplate.getForObject(
-                "http://auto-service/autos/search/getCarsByUserId?userid=" + userId, GenericResponseWrapper.class
+                "http://auto-service/autos/search/getCarsByUserId?userId=" + userId, GenericResponseWrapper.class
         );
 
-        List<Car> cars = objectMapper.convertValue(wrapper.get_embedded().get("cars"), new TypeReference<List<Car>>() {
-        });
+        List<Car> cars = objectMapper.convertValue(wrapper.get_embedded().get("cars"), new TypeReference<List<Car>>() {});
 
         return cars;
+    }
+
+    @PutMapping("/car")
+    public ResponseEntity<String> putCar(@RequestBody Car auto){
+        List<HttpMessageConverter<?>> list = new ArrayList<>();
+        list.add(new MappingJackson2HttpMessageConverter());
+        restTemplate.setMessageConverters(list);
+
+        restTemplate.put("http://auto-service/autos/" + auto.get_id(), auto, String.class);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/car/{carId}")
+    public ResponseEntity deleteCarByCarId(@PathVariable("carId") String carId){
+
+        restTemplate.delete("http://auto-service/autos/" + carId);
+
+        return ResponseEntity.ok().build();
     }
 }

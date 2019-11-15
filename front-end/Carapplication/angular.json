@@ -24,8 +24,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/styles.scss"
+              
             ],
             "scripts": [
               "node_modules/popper.js/dist/umd/popper.min.js",
@@ -125,6 +125,12 @@
           }
         }
       }
-    }},
-  "defaultProject": "Carapplication"
+    }
+  },
+  "defaultProject": "Carapplication",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

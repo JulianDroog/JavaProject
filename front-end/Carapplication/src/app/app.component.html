@@ -1,13 +1,14 @@
 <nav>
-  <mat-sidenav-container class="nav-container">
-    <mat-sidenav mode="side" opened="true">
-      <mat-nav-list>
-        <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-        <a mat-list-item routerLink="/cars" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Cars</a>       
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-toolbar color="primary" id="toolbar">
+        <mat-toolbar-row>
+            <h1>*Naam app?*</h1>
+            <!-- <span class="menu-spacer"></span> -->
+          <div>
+              <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+              <a mat-button routerLink="/cars" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Cars</a>       
+          </div>
+       </mat-toolbar-row>
+      </mat-toolbar>
       <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>  
 </nav>
+

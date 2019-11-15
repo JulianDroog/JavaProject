@@ -1,3 +1,3 @@
 export class Make {
-    constructor(public make_display: string){}
+    constructor(public make_display: string){} //make = automerk
 }

@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/bootstrap-grid";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.scrollableList {
+    max-height: 400px;
+    overflow: auto;
+  }
+
+.myAccordion{
+    margin: 3px;
+}
+
+.cardZoeken{
+    background-color:#c5cae9;
+}
+
+#toolbar{
+    margin-bottom: 15px;
+}

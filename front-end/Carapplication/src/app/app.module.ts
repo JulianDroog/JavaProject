@@ -11,7 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { YearsModule } from './years/years.module';
 import { CarsComponent } from './cars/cars/cars.component';
 import { CarsModule } from './cars/cars.module';
-import { MatSidenavModule, MatListModule} from '@angular/material';
+import { MatSidenavModule, MatListModule, MatToolbarModule, MatButtonModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
@@ -36,6 +36,8 @@ const appRoutes: Routes = [
     CarsModule,
     MatSidenavModule,
     MatListModule,
+    MatToolbarModule,
+    MatButtonModule,
     BrowserAnimationsModule
   ],
   providers: [],

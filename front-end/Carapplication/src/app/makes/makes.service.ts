@@ -10,4 +10,8 @@ export class MakesService {
   getMakesByYear(year: string):any {
     return this.http.jsonp("https://www.carqueryapi.com/api/0.3/?&cmd=getMakes&year=" + year,'callback');
   }
+
+  getMakes():any {
+    return this.http.jsonp("https://www.carqueryapi.com/api/0.3/?&cmd=getMakes",'callback');
+  }
 }

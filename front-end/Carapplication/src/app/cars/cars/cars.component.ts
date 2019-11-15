@@ -13,7 +13,7 @@ import { ModelsAPIService } from 'src/app/modelsAPI/models-api.service';
 @Component({
   selector: 'app-cars',
   templateUrl: './cars.component.html',
-  styleUrls: ['./cars.component.css']
+  styleUrls: ['./cars.component.scss']
 })
 export class CarsComponent implements OnInit {
   car: Car = null;
@@ -22,11 +22,13 @@ export class CarsComponent implements OnInit {
   chosenYear: string = "";
   //make: Make = null;
   listMakes: string[] = [];
-  showMake: boolean = false;
+  //showMake: boolean = false;
+  filterYear: boolean = false;
   chosenMake: string = "";
   
   carForm = this.fb.group({
-    year: ["", [ Validators.required ] ]
+    year: "" ,
+    make: ""
   });
   constructor(private _yearService: YearsService, private _makeService: MakesService, private _modelService: ModelsAPIService, private fb: FormBuilder) { 
     
@@ -34,7 +36,7 @@ export class CarsComponent implements OnInit {
 
   ngOnInit() {
     this.getAllYears();
-
+    this.getMakes();
   }
 
   getAllYears() {
@@ -48,36 +50,40 @@ export class CarsComponent implements OnInit {
     });
     }
 
-    onChooseYear(year: string) {
+    onSelectionChangeYear(year: string) {
       this.chosenYear = year;
+      console.log(year);
       console.log(this.chosenYear);
       this.getMakesByYear(this.chosenYear);
       }
 
-    //  getMakes(){
-
-      //}
+     getMakes(){
+      this._makeService.getMakes().subscribe(result => {
+        console.log(result.Makes);
+        for(let items of result.Makes){
+          this.listMakes.push(items.make_display);
+        }
+      })
+      }
 
     getMakesByYear(selectedYear: string){
       this._makeService.getMakesByYear(selectedYear).subscribe(result => {
         console.log(result.Makes);
         for(let items of result.Makes){
-          console.log(items.make_display);
           this.listMakes.push(items.make_display);
-          // this.listMakes.push(new Make(items.make_id, items.make_display, items.make_is_common, items.make_country));
         }
-        this.showMake = true;
       })
     }
-    onChooseMake(make: string) {
+    onSelectionChangeMake(make: string) {
+      console.log(make);
       this.chosenMake = make;
       console.log(this.chosenMake);
      // this.getModelsByMake(this.chosenMake);
       }
       
-      //getModelsByMake(make: string){
-       // this._modelService.getModelsByMake(make)
-     // }
+      getModelsByMake(make: string){
+       this._modelService.getModelsByMake(make)
+     }
 
     
 

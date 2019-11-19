@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class MakesService {
 
   constructor(private http: HttpClient) { }
-  getMakesByYear(year: string):any {
+  getMakesByYear(year: Number):any {
     return this.http.jsonp("https://www.carqueryapi.com/api/0.3/?&cmd=getMakes&year=" + year,'callback');
   }
 

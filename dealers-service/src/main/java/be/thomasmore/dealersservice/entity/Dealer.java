@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Document(collation = "dealer")
+@Document(collection = "dealer")
 public class Dealer {
     @Id
     private int id;
@@ -22,6 +22,8 @@ public class Dealer {
 
     public Dealer() {
     }
+
+
 
     public int getId() {
         return id;

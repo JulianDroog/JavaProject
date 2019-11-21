@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarsComponent } from './cars/cars.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -14,6 +14,6 @@ import { MatFormFieldModule, MatButtonModule, MatSelectModule, MatOptionModule, 
   ],
   exports: [
     CarsComponent
-  ]
+  ],schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class CarsModule { }

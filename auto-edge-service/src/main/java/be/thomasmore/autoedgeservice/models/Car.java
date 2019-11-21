@@ -2,12 +2,14 @@ package be.thomasmore.autoedgeservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Car {
 
-    private int _id;
+    private String _id;
     private String make;
     private String model;
     private String type;
@@ -30,7 +32,7 @@ public class Car {
         this.userId = userId;
     }
 
-    public int get_id() {
+    public String get_id() {
         return _id;
     }
 

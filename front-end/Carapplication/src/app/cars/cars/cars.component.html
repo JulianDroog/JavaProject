@@ -16,12 +16,12 @@
                           Merk
                         </mat-panel-title>
                       </mat-expansion-panel-header>
-                      <mat-selection-list class="scrollableList" formControlName="make" #make  (click)="onSelectionChangeMake(make.value)">
-                          <mat-list-option *ngFor="let make of listMakes" [value]="make">
-                            {{make}}
+                      <mat-selection-list class="scrollableList" formControlName="make" #make  (click)="onSelectionChangeMake(make._value)">
+                          <mat-list-option *ngFor="let make of allMakes" [value]="make.make_id">
+                            {{make.make_display}}
                           </mat-list-option>
                       </mat-selection-list>
-                    </mat-expansion-panel> 
+                    </mat-expansion-panel>
                   </mat-accordion>
                   <mat-accordion class="myAccordion">
                       <mat-expansion-panel>
@@ -30,46 +30,70 @@
                             Jaar
                           </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <mat-selection-list class="scrollableList" formControlName="year" #year (selectionChange)="onSelectionChangeYear(year.value)">
+                        <mat-selection-list class="scrollableList" formControlName="year" #year (selectionChange)="onSelectionChangeYear(year._value)">
                             <mat-list-option *ngFor="let year of allYears" [value]="year">
                               {{year}}
                             </mat-list-option>
                         </mat-selection-list>
-                      </mat-expansion-panel> 
+                      </mat-expansion-panel>
                     </mat-accordion>
             </mat-card-content>
           </mat-card>
-
-        <!-- <label>Merk:</label>
-        <select class="form-control" *ngIf="listMakes" formControlName="make" #make (change)="onChooseMake(make.value)">
-            <option value="" disabled selected>Selecteer een merk </option>
-          <option *ngFor="let make of listMakes" [value]="make">
-            {{make}}
-          </option>
-        </select>
-    
-    
-        <div *ngIf="filterYear">
-            <label>Jaartal:</label>
-            <select class="form-control" *ngIf="yearsMinMax" formControlName="year" #year (change)="onChooseYear(year.value)">
-                <option value="" disabled selected>Selecteer een jaar </option>
-              <option *ngFor="let year of allYears" [value]="year">
-                {{year}}
-              </option>
-            </select>
-        </div>-->
 </div>
 
 <div class="bs col-lg-8">
-    <div class="card border-primary">
-        <div class="card-header bg-primary text-white">Auto's</div>
-        <div class="card-body">
-            <div>
-              *Hier komen de modellen en bijhorende info*
-            </div>
-        </div>
-    </div>
+  <mat-card class="cardModelsAuto">
+    <mat-card-header>
+      <mat-card-title>Automodellen</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Merk - Model
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-selection-list class="scrollableList" formControlName="model" #model  >
+                  <mat-list-option *ngFor="let model of allModels" [value]="model.model_name">
+                      {{model.model_make_id}} - {{model.model_name}}
+                  </mat-list-option>
+              </mat-selection-list>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+
+          <!-- <mat-form-field>
+              <mat-label>Merk - Model</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let model of allModels" [value]="model.model_name">
+                    {{model.model_make_id}} - {{model.model_name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> -->
+        
+      <!-- <mat-list>
+        <mat-list-item *ngFor="let model of allModels" [value]="model.model_name" >
+            <mat-accordion class="myAccordion">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{model.model_name}}
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  **komt de info**
+                </mat-expansion-panel>
+              </mat-accordion>
+        </mat-list-item>
+      </mat-list> -->
+
+
+
+
+
+    </mat-card-content>
+  </mat-card>
 </div>
 </div>
-          
+
 </form>

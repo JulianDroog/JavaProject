@@ -16,7 +16,7 @@ export class ModelsAPIService {
     return this.http.jsonp("https://www.carqueryapi.com/api/0.3/??&cmd=getModels&make=" + make ,'callback');
   }
 
-  // getModelsByYear(year: Number){
-  //   return this.http.jsonp("https://www.carqueryapi.com/api/0.3/??&cmd=getModels&year=" + year ,'callback');
-  // }
+  getModelsByYear(year: Number){
+    return this.http.jsonp("https://www.carqueryapi.com/api/0.3/??&cmd=getModels&year=" + year ,'callback');
+  }
 }

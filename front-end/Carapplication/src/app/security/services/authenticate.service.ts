@@ -12,12 +12,7 @@ export class AuthenticateService {
 
   constructor(private _httpClient: HttpClient) { }
   authenticate(userLogin: UserLogin): Observable<User> {
-    var config = {
-      headers : {
-          'Content-Type': 'application/json',
-      }
-  }
-  return this._httpClient.post<User>("http://localhost:8762/auth/", userLogin, config);
+  return this._httpClient.post<User>("http://localhost:8762/auth/", userLogin);
   }
   
 

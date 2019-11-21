@@ -37,11 +37,10 @@ export class SecurityComponent implements OnInit {
     console.log(this.model);
 
     // if(this.isRegister == true){
-      this._authenticateService.authenticate(this.model).subscribe((result : any) => {
-        console.log(result.headers);
-        // localStorage.setItem("token",result.token);
+      this._authenticateService.authenticate(this.model).subscribe(result => {
+        localStorage.setItem("token",result.token);
         console.log("User is logged in!");
-        // this.router.navigateByUrl('/cars');
+        this.router.navigateByUrl('/cars');
         });
       }
       

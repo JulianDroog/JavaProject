@@ -15,7 +15,9 @@ export class SecurityComponent implements OnInit {
 
   ngOnInit(){
   }
-  constructor(private _authenticateService : AuthenticateService, private router: Router) { }
+  constructor(private _authenticateService : AuthenticateService, private router: Router) {
+   }
+
 
   submitted : boolean = false;
 
@@ -34,17 +36,21 @@ export class SecurityComponent implements OnInit {
     this.submitted = true;
     console.log(this.model);
 
-    if(this.isRegister == true){
-      this._authenticateService.authenticate(this.model).subscribe(result => {
-        localStorage.setItem("token",result.token);
+    // if(this.isRegister == true){
+      this._authenticateService.authenticate(this.model).subscribe((result : any) => {
+        console.log(result.headers);
+        // localStorage.setItem("token",result.token);
         console.log("User is logged in!");
-        // this.router.navigateByUrl('/poll');
+        // this.router.navigateByUrl('/cars');
         });
-  }else {
-    this._authenticateService.register(this.model).subscribe(result => {
-      console.log("user registration");
-      this.isRegister = false;
-      });
-  }
-  }
-}
+      }
+      
+  // }
+  // else {
+  //   this._authenticateService.register(this.model).subscribe(result => {
+  //     console.log("user registration");
+  //     this.isRegister = false;
+  //     });
+  // }
+  // }
+    }

@@ -2,8 +2,8 @@ package be.thomasmore.favoriteservice.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
+
 @Entity
 @Table(name="favoriteCar")
 @Data
@@ -19,4 +19,10 @@ public class FavoriteCar {
 
     @Column(name = "userID")
     private int userID;
+
+    @Column(name = "make")
+    private String make;
+
+    @Column(name = "model")
+    private String model;
 }

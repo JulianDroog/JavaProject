@@ -9,6 +9,8 @@ public class FavoriteCar {
     private int id;
     private int carID;
     private int userID;
+	private String make;
+	private String model;
 
     public FavoriteCar(int carID, int userID) {
         this.carID = carID;
@@ -37,5 +39,21 @@ public class FavoriteCar {
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    public String getMake() {
+        return make;
+    }
+
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 }

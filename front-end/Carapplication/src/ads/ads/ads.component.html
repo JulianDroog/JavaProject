@@ -5,7 +5,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ad.make}} - {{ad.model}}</h5>
                 <p class="card-text">{{ad.type}}</p>
-                <a href="#" class="btn btn-primary">Bekijk details</a>
+                <a class="btn btn-primary"  routerLink="/ad/{{ad._id}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Bekijk details</a>
             </div>
         </div>
     </div>

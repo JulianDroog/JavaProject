@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface AutoRepository extends MongoRepository<Auto, String> {
-
+    Auto getCarBy_id(@Param("_id") String _id);
     List<Auto> getCarsByUserId(@Param("userId") Integer userId);
 }

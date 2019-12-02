@@ -1,5 +1,5 @@
 export class Car {
-    id: string;
+    _id: string;
     make: string;
     model: string;
     type: string;

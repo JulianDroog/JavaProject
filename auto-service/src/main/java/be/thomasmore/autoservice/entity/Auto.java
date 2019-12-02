@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "car")
 public class Auto {
     @Id
-    private String id;
+    private String _id;
     private String make;
     private String model;
     private String type;

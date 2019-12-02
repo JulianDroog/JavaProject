@@ -15,12 +15,15 @@ import { MatSidenavModule, MatListModule, MatToolbarModule, MatButtonModule} fro
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SecurityInterceptor } from './security/security.interceptor';
 import { AdsComponent } from 'src/ads/ads/ads.component';
+import { AdDetailsComponent } from 'src/ads/adDetails/ad-details/ad-details.component';
 
 const appRoutes: Routes = [
   { path: '', component: SecurityComponent },
   { path: 'cars', component: CarsComponent },
   { path: 'login', component: SecurityComponent },
   { path: 'ads', component: AdsComponent },
+  { path: 'ad/:id', component: AdDetailsComponent },
+  { path: '**', component: SecurityComponent },
   ];
 
 @NgModule({
@@ -29,7 +32,8 @@ const appRoutes: Routes = [
     SecurityComponent,
     NavbarComponent,
     FooterComponent,
-    AdsComponent
+    AdsComponent,
+    AdDetailsComponent
   ],
   imports: [
     BrowserModule,

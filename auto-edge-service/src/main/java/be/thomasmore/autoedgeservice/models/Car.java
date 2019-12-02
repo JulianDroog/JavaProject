@@ -20,7 +20,8 @@ public class Car {
     private Integer doors;
     private Integer userId;
 
-    public Car(String make, String model, String type, Integer year, String transmission, Integer cc, Integer hp, Integer doors, Integer userId) {
+    public Car(String _id, String make, String model, String type, Integer year, String transmission, Integer cc, Integer hp, Integer doors, Integer userId) {
+        this._id = _id;
         this.make = make;
         this.model = model;
         this.type = type;

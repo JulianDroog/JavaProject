@@ -14,11 +14,13 @@ import { CarsModule } from './cars/cars.module';
 import { MatSidenavModule, MatListModule, MatToolbarModule, MatButtonModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SecurityInterceptor } from './security/security.interceptor';
+import { AdsComponent } from 'src/ads/ads/ads.component';
 
 const appRoutes: Routes = [
   { path: '', component: SecurityComponent },
   { path: 'cars', component: CarsComponent },
-  { path: 'login', component: SecurityComponent }
+  { path: 'login', component: SecurityComponent },
+  { path: 'ads', component: AdsComponent },
   ];
 
 @NgModule({
@@ -26,7 +28,8 @@ const appRoutes: Routes = [
     AppComponent,
     SecurityComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    AdsComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,7 @@ const appRoutes: Routes = [
     MatListModule,
     MatToolbarModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

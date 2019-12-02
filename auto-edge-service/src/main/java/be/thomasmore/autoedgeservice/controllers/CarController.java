@@ -40,7 +40,18 @@ public class CarController {
                 "http://auto-service/autos/search/getCarsByUserId?userId=" + userId, GenericResponseWrapper.class
         );
 
-        List<Car> cars = objectMapper.convertValue(wrapper.get_embedded().get("cars"), new TypeReference<List<Car>>() {});
+        List<Car> cars = objectMapper.convertValue(wrapper.get_embedded().get("autos"), new TypeReference<List<Car>>() {});
+
+        return cars;
+    }
+
+    @GetMapping()
+    public List<Car> getCars(){
+        GenericResponseWrapper wrapper = restTemplate.getForObject(
+                "http://auto-service/autos", GenericResponseWrapper.class
+        );
+
+        List<Car> cars = objectMapper.convertValue(wrapper.get_embedded().get("autos"), new TypeReference<List<Car>>() {});
 
         return cars;
     }

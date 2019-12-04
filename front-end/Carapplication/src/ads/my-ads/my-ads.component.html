@@ -5,7 +5,11 @@
             <div class="card-body">
                 <h5 class="card-title">{{ad.make}} - {{ad.model}}</h5>
                 <p class="card-text">{{ad.type}}</p>
-                <a class="btn btn-primary"  routerLink="/ad/{{ad._id}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Bekijk details</a>
+                <div>
+                    <a class="btn btn-primary"  routerLink="/ad/{{ad._id}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><fa-icon [icon]="faSearch"></fa-icon></a>
+                    <a class="btn ml-1 btn-info" routerLink="/updateAd/{{ad._id}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><fa-icon [icon]="faEdit"></fa-icon></a>
+                    <a class="btn ml-1 btn-danger" (click)="deleteAd(ad._id)"><fa-icon [icon]="faTrashAlt"></fa-icon></a>
+                </div>
             </div>
         </div>
     </div>

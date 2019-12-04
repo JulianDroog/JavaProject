@@ -21,4 +21,8 @@ export class AdsService {
   getCarById(id : string): Observable<Car>{
     return this._httpClient.get<Car>("http://localhost:8050/cars/car/"+id);
   }
+
+  deleteAd(id : string){
+    return this._httpClient.delete("http://localhost:8050/cars/car/"+id);
+  }
 }

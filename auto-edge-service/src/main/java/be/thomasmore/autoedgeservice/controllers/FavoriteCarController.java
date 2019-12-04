@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/favoritecars")
+@RequestMapping("/favoriteCars")
 public class FavoriteCarController {
     @Autowired
     private RestTemplate restTemplate;
@@ -23,7 +23,7 @@ public class FavoriteCarController {
     private ObjectMapper objectMapper;
 
     @GetMapping("/{userId}")
-    public List<FavoriteCar> getFavoriteCarsByUserId(@PathVariable("userId") Integer userId) {
+    public List<FavoriteCar> getFavoriteCarsByUserId(@PathVariable("userId") String userId) {
 
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://favorite-service/favoritecars/search/getAllFavoriteCarsByUserID?userid=" + userId, GenericResponseWrapper.class);
 
@@ -32,17 +32,17 @@ public class FavoriteCarController {
         return favoriteCars;
     }
 
-    @PostMapping("/favoriteCar}")
-    public ResponseEntity<String> postFavoriteCar(@PathVariable("favoriteCar") Integer carId, Integer userId){
+    @PostMapping("/favoriteCar")
+    public ResponseEntity<String> postFavoriteCar(@RequestBody FavoriteCar favoriteCar){
 
-        FavoriteCar favoriteCar = new FavoriteCar(carId, userId);
+        FavoriteCar myFavoriteCar = new FavoriteCar(favoriteCar.getId(), favoriteCar.getCarID(), favoriteCar.getUserID(), favoriteCar.getMake(), favoriteCar.getModel());
 
         ResponseEntity<String> result = restTemplate.postForEntity("http://favorite-service/favoritecars/", favoriteCar, String.class);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/favoriteCar/{favoriteCarId}")
-    public ResponseEntity deleteFavoriteCarById(@PathVariable("favoriteCarId") String favoriteCarId){
+    public ResponseEntity deleteFavoriteCarById(@PathVariable("favoriteCarId") int favoriteCarId){
 
         restTemplate.delete("http://favorite-service/favoritecars/" + favoriteCarId);
 

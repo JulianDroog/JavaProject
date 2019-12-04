@@ -7,14 +7,17 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FavoriteCar {
     private int id;
-    private int carID;
-    private int userID;
+    private String carID;
+    private String userID;
 	private String make;
 	private String model;
 
-    public FavoriteCar(int carID, int userID) {
+    public FavoriteCar(int id, String carID, String userID, String make, String model) {
         this.carID = carID;
         this.userID = userID;
+        this.id = id;
+        this.make = make;
+        this.model = model;
     }
 
     public int getId() {
@@ -25,19 +28,19 @@ public class FavoriteCar {
         this.id = id;
     }
 
-    public int getCarID() {
+    public String getCarID() {
         return carID;
     }
 
-    public void setCarID(int carID) {
+    public void setCarID(String carID) {
         this.carID = carID;
     }
 
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 

@@ -14,6 +14,10 @@ export class AdsService {
     return this._httpClient.get<Car[]>("http://localhost:8050/cars");
   }
 
+  getMyAds(userID: number): Observable<Car[]>{
+    return this._httpClient.get<Car[]>("http://localhost:8050/cars/user/"+userID);
+  } 
+
   getCarById(id : string): Observable<Car>{
     return this._httpClient.get<Car>("http://localhost:8050/cars/car/"+id);
   }

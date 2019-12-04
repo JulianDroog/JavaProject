@@ -79,11 +79,31 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                 .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret().getBytes())
                 .compact();
 
+        String id = "";
+        switch(auth.getName()) {
+            case "admin":
+                id = "1";
+                break;
+            case "Julian":
+                id = "2";
+                break;
+            case "Eline":
+                id = "3";
+                break;
+            case "Kjelle":
+                id = "4";
+                break;
+            case "Jasper":
+                id = "5";
+                break;
+        }
+
+
         // Add token to header
         response.addHeader(jwtConfig.getHeader(), jwtConfig.getPrefix() + token);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().write("{\"token\":\"" + token + "\"}");
+        response.getWriter().write("{\"token\":\"" + token + "\"," + "\"id\":\"" + id + "\"}");
     }
 
     // A (temporary) class just to represent the user credentials

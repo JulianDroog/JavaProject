@@ -15,11 +15,12 @@ export class SecurityComponent implements OnInit {
 
   ngOnInit(){
   }
-  constructor(private _authenticateService : AuthenticateService, private router: Router) {
+  constructor(private _authenticateService : AuthenticateService,  private router: Router) {
    }
 
 
   submitted : boolean = false;
+  message : boolean = false;
 
   onRegister(){
     this.isRegister = false;
@@ -34,13 +35,20 @@ export class SecurityComponent implements OnInit {
   
   onSubmit() {
     this.submitted = true;
+    this.message = false;
     console.log(this.model);
 
     // if(this.isRegister == true){
       this._authenticateService.authenticate(this.model).subscribe(result => {
         localStorage.setItem("token",result.token);
+        localStorage.setItem("id",result.id);
         console.log("User is logged in!");
-        this.router.navigateByUrl('/cars');
+        this.router.navigateByUrl('/ads');
+        }, 
+        errorResponse => {
+            // Login Error
+            this.message = true;
+            this.submitted = false;
         });
       }
       

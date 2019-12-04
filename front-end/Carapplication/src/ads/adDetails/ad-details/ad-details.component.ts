@@ -10,7 +10,18 @@ import { Car } from 'src/ads/models/car.model';
 })
 export class AdDetailsComponent implements OnInit {
 
-  ad : Car = null;
+  ad : Car = {
+    _id: null,
+    make: "",
+    model: "",
+    type: "",
+    year: null,
+    transmission: "",
+    cc: null,
+    hp: null,
+    doors: null,
+    userId: null
+  };
   params : Params;
 
   constructor(private _adsService: AdsService, private route: ActivatedRoute) {

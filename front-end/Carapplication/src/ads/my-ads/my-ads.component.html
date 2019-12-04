@@ -39,12 +39,54 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+            <form #form="ngForm" (ngSubmit)="checkSave(nAd._id)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="make">Make</label>
+                        <input type="text" class="form-control" id="make" name="make" placeholder="Enter make"
+                            value={{nAd.make}} [(ngModel)]="nAd.make" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="model">Model</label>
+                        <input type="text" class="form-control" id="model" name="model" placeholder="Enter model"
+                            value={{nAd.model}} [(ngModel)]="nAd.model" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <input type="text" class="form-control" id="type" name="type" placeholder="Enter type"
+                            value={{nAd.type}} [(ngModel)]="nAd.type" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Year</label>
+                        <input type="number" min="1900" max="2019" class="form-control" id="year" name="year" placeholder="Enter year"
+                            value={{nAd.year}} [(ngModel)]="nAd.year" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="transmission">Transmission</label>
+                        <input type="text" class="form-control" id="transmission" name="transmission" placeholder="Enter transmission"
+                            value={{nAd.transmission}} [(ngModel)]="nAd.transmission" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cc">CC</label>
+                        <input type="number" min="0" class="form-control" id="cc" name="cc" placeholder="Enter cc"
+                            value={{nAd.cc}} [(ngModel)]="nAd.cc" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hp">HP</label>
+                        <input type="number" min="0" class="form-control" id="hp" name="hp" placeholder="Enter hp"
+                            value={{nAd.hp}} [(ngModel)]="nAd.hp" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="doors">Doors</label>
+                        <input type="number" min="2" class="form-control" id="doors" name="doors" placeholder="Enter doors"
+                            value={{nAd.doors}} [(ngModel)]="nAd.doors" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!form.form.valid">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

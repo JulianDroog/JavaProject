@@ -25,4 +25,12 @@ export class AdsService {
   deleteAd(id : string){
     return this._httpClient.delete("http://localhost:8050/cars/car/"+id);
   }
+
+  putAd(ad: Car){
+    return this._httpClient.put("http://localhost:8050/cars/car", ad);
+  }
+
+  postAd(ad: Car){
+    return this._httpClient.post("http://localhost:8050/cars/car", ad);
+  }
 }

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
 import { SecurityComponent } from './security/security/security.component';
@@ -18,10 +19,11 @@ import { AdsComponent } from 'src/ads/ads/ads.component';
 import { AdDetailsComponent } from 'src/ads/adDetails/ad-details/ad-details.component';
 import { DealersComponent } from './dealers/dealers.component';
 import { FavoriteCarsComponent } from './favorite-cars/favorite-cars/favorite-cars.component';
+import { MyAdsComponent } from 'src/ads/my-ads/my-ads.component';
 
 const appRoutes: Routes = [
   { path: '', component: SecurityComponent },
-  { path: 'cars', component: CarsComponent },
+  { path: 'myAds', component: MyAdsComponent },
   { path: 'login', component: SecurityComponent },
   { path: 'ads', component: AdsComponent },
   { path: 'ad/:id', component: AdDetailsComponent },
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
     AdsComponent,
     AdDetailsComponent,
     DealersComponent,
-    FavoriteCarsComponent
+    FavoriteCarsComponent,
+    MyAdsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatButtonModule,
     BrowserAnimationsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -23,8 +23,7 @@ export class AdsComponent implements OnInit {
     this._adsService.getAllAds()
     .subscribe(result => {
       this.ads = result;
-      console.log(result);
-    })
+    });
   }
 
   addFavoriteCar(ad: Car){

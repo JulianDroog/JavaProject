@@ -1,1 +1,32 @@
-{{ad.model}}
+<div class="jumbotron">
+  <div class="container-fluid">
+    <h1 class="display-5">Details for {{ad.make}} - {{ad.model}}</h1>
+    <h3 class="display-5">{{ad.type}}</h3>
+  </div>
+</div>
+<div class="container-fluid">
+  <table class="table">
+    <tbody>
+      <tr>
+        <th scope="row">Year</th>
+        <td>{{ad.year}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Transmission</th>
+        <td>{{ad.transmission}}</td>
+      </tr>
+      <tr>
+        <th scope="row">CC</th>
+        <td>{{ad.cc}}cc</td>
+      </tr>
+      <tr>
+        <th scope="row">Horsepower</th>
+        <td>{{ad.hp}}hp</td>
+      </tr>
+      <tr>
+        <th scope="row">Doors</th>
+        <td>{{ad.doors}} doors</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

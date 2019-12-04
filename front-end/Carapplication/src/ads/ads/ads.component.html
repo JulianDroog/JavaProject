@@ -6,9 +6,9 @@
                 <h5 class="card-title">{{ad.make}} - {{ad.model}}</h5>
                 <p class="card-text">{{ad.type}}</p>
                 <a class="btn btn-primary"  routerLink="/ad/{{ad._id}}" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Bekijk details</a>
-                <button (click)="addFavoriteCar(ad)">
-                    <i class="material-icons">favorite_border</i>
-                </button>
+                <a class="btn btn-danger ml-1" (click)="addFavoriteCar(ad)">
+                    <fa-icon [icon]="faHeart"></fa-icon>
+                </a>
             </div>
         </div>
     </div>

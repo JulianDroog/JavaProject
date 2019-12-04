@@ -3,6 +3,7 @@ import { AdsService } from '../services/ads.service';
 import { Car } from '../models/car.model';
 import { FavoritesService } from 'src/app/favorite-cars/favorite-car.service';
 import { FavoriteCar } from 'src/app/favorite-cars/models/favorite-car.model';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-ads',
@@ -13,6 +14,7 @@ export class AdsComponent implements OnInit {
 
   ads : Car[] = [];
   favoriteCar: FavoriteCar = null;
+  faHeart = faHeart;
   
 
   constructor(private _adsService : AdsService, private _favoriteCarSerice: FavoritesService) { 

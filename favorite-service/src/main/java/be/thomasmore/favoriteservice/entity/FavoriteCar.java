@@ -15,10 +15,10 @@ public class FavoriteCar {
     private int id;
 
     @Column(name = "carID")
-    private int carID;
+    private String carID;
 
     @Column(name = "userID")
-    private int userID;
+    private String userID;
 
     @Column(name = "make")
     private String make;

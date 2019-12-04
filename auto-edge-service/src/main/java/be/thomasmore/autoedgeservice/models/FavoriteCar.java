@@ -19,6 +19,11 @@ public class FavoriteCar {
         this.make = make;
         this.model = model;
     }
+    public FavoriteCar(int id, String carID, String userID) {
+        this.carID = carID;
+        this.userID = userID;
+        this.id = id;
+    }
 
     public int getId() {
         return id;

@@ -17,6 +17,7 @@ import { SecurityInterceptor } from './security/security.interceptor';
 import { AdsComponent } from 'src/ads/ads/ads.component';
 import { AdDetailsComponent } from 'src/ads/adDetails/ad-details/ad-details.component';
 import { DealersComponent } from './dealers/dealers.component';
+import { FavoriteCarsComponent } from './favorite-cars/favorite-cars/favorite-cars.component';
 
 const appRoutes: Routes = [
   { path: '', component: SecurityComponent },
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
   { path: 'ad/:id', component: AdDetailsComponent },
   { path: 'dealers', component: DealersComponent },
   { path: '**', component: SecurityComponent },
+  { path: 'favorites', component: FavoriteCarsComponent },
   ];
 
 @NgModule({
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     FooterComponent,
     AdsComponent,
     AdDetailsComponent,
-    DealersComponent
+    DealersComponent,
+    FavoriteCarsComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 
 @CrossOrigin
-public interface FavoriteCarRepository extends JpaRepository<FavoriteCar, Integer> {
-    List<FavoriteCar> getAllFavoriteCarsByUserID(@Param("userID") Integer userID) ;
+public interface FavoriteCarRepository extends JpaRepository<FavoriteCar, String> {
+    List<FavoriteCar> getAllFavoriteCarsByUserID(@Param("userID") String userID) ;
 }

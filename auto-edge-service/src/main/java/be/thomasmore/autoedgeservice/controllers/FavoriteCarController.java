@@ -22,7 +22,7 @@ public class FavoriteCarController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @GetMapping("/{userId}")
+    @GetMapping("user/{userId}")
     public List<FavoriteCar> getFavoriteCarsByUserId(@PathVariable("userId") String userId) {
 
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://favorite-service/favoritecars/search/getAllFavoriteCarsByUserID?userid=" + userId, GenericResponseWrapper.class);
@@ -36,7 +36,7 @@ public class FavoriteCarController {
     public ResponseEntity<String> postFavoriteCar(@RequestBody FavoriteCar favoriteCar){
 
         FavoriteCar myFavoriteCar = new FavoriteCar(favoriteCar.getId(), favoriteCar.getCarID(), favoriteCar.getUserID(), favoriteCar.getMake(), favoriteCar.getModel());
-
+       // FavoriteCar myFavoriteCar = new FavoriteCar(favoriteCar.getId(), favoriteCar.getCarID(), favoriteCar.getUserID());
         ResponseEntity<String> result = restTemplate.postForEntity("http://favorite-service/favoritecars/", favoriteCar, String.class);
         return ResponseEntity.ok().build();
     }

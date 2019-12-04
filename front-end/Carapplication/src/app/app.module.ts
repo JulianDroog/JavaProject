@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SecurityInterceptor } from './security/security.interceptor';
 import { AdsComponent } from 'src/ads/ads/ads.component';
 import { AdDetailsComponent } from 'src/ads/adDetails/ad-details/ad-details.component';
+import { DealersComponent } from './dealers/dealers.component';
 
 const appRoutes: Routes = [
   { path: '', component: SecurityComponent },
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
   { path: 'login', component: SecurityComponent },
   { path: 'ads', component: AdsComponent },
   { path: 'ad/:id', component: AdDetailsComponent },
+  { path: 'dealers', component: DealersComponent },
   { path: '**', component: SecurityComponent },
   ];
 
@@ -33,7 +35,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     FooterComponent,
     AdsComponent,
-    AdDetailsComponent
+    AdDetailsComponent,
+    DealersComponent
   ],
   imports: [
     BrowserModule,

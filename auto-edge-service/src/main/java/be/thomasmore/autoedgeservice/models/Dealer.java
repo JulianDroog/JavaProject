@@ -30,7 +30,7 @@ public class Dealer {
         this.manufacturer = manufacturer;
     }
 
-    public Dealer(String name) {
+    public Dealer() {
     }
 
     public int getId() {

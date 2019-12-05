@@ -26,20 +26,34 @@ public class DealerController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @PostMapping("/{dealer}")
-    public ResponseEntity<String> postDealerById(@PathVariable("dealer") int id, String name, String street, String number, String city, String postal, String provence, String country, String phone, String manufacturer) {
-        Dealer dealer = new Dealer(id, name, street, number, city, postal, provence, country, phone, manufacturer);
+    @PostMapping("/dealer")
+    public ResponseEntity<String> postDealerById(@RequestBody Dealer dealer) {
+        Dealer newDealer = new Dealer(dealer.get_id(), dealer.getName(), dealer.getCity(), dealer.getCountry(), dealer.getNumber(), dealer.getPhone(), dealer.getPostal(), dealer.getProvence(), dealer.getStreet(), dealer.getManufacturer());
 
         ResponseEntity<String> result = restTemplate.postForEntity(
-                "http://dealers-service/dealers", dealer, String.class
+                "http://dealers-service/dealers/", newDealer, String.class
         );
         return ResponseEntity.ok().build();
     }
 
 
-    @GetMapping("all")
+
+//    @PostMapping("/dealer")
+//    public ResponseEntity<String> postDealer(@RequestBody Dealer dealer){
+//
+//        Dealer dealer1 = new Dealer(dealer.get_id(), dealer.getName(),dealer.getStreet(),dealer.getNumber(),dealer.getCity(),dealer.getPostal(),dealer.getProvence(),dealer.getCountry(),dealer.getPhone(),dealer.getManufacturer());
+//
+//        ResponseEntity<String> result = restTemplate.postForEntity(
+//                "http://dealers-service/dealers", dealer1, String.class
+//        );
+//
+//        return ResponseEntity.ok().build();
+//    }
+
+
+    @GetMapping()
     public List<Dealer> getAllDealers() {
-        GenericResponseWrapper wrapper = restTemplate.getForObject("http://dealers-service/dealers/", GenericResponseWrapper.class);
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://dealers-service/dealers", GenericResponseWrapper.class);
 
         List<Dealer> dealers = objectMapper.convertValue(wrapper.get_embedded().get("dealers"), new TypeReference<List<Dealer>>() {
         });
@@ -49,10 +63,9 @@ public class DealerController {
 
 
     @DeleteMapping("/dealer/{id}")
-    public ResponseEntity deleteDealerById(@PathVariable("id") Integer dealerId) {
+    public ResponseEntity deleteDealerById(@PathVariable("id") String dealerId) {
 
-        Dealer dealer = restTemplate.getForObject("http://dealers-service/dealers/findDealerById?id=" + dealerId, Dealer.class);
-        restTemplate.delete("http://dealers-service/dealers/findDealerById?id=" + dealer.getId());
+        restTemplate.delete("http://dealers-service/dealers/" + dealerId);
 
         return ResponseEntity.ok().build();
     }

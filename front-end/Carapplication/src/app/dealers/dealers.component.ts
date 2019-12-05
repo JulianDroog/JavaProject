@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dealers.component.scss']
 })
 export class DealersComponent implements OnInit {
-dealers: Observable<Dealer[]>;
+  dealers: Dealer[] = [];
+  dealer: Dealer;
 
   constructor(private _dealerService: DealerService) {
 
@@ -17,11 +18,19 @@ dealers: Observable<Dealer[]>;
 
   ngOnInit() {
     this.getAllDealers();
-    console.log( this.getAllDealers());
+    console.log(this.dealers);
   }
 
   getAllDealers() {
-    this._dealerService.getDealers().subscribe();
+    this._dealerService.getDealers().subscribe(result =>{this.dealers = result});
+  }
+  deleteDealer(dealer: Dealer){
+    console.log(dealer);
+    this._dealerService.deleteDealer(dealer._id).subscribe(result =>{
+      this.getAllDealers();
+    });
   }
 
+
+  
 }

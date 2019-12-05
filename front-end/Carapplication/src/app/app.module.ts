@@ -20,6 +20,7 @@ import { AdDetailsComponent } from 'src/ads/adDetails/ad-details/ad-details.comp
 import { DealersComponent } from './dealers/dealers.component';
 import { FavoriteCarsComponent } from './favorite-cars/favorite-cars/favorite-cars.component';
 import { MyAdsComponent } from 'src/ads/my-ads/my-ads.component';
+import { AdddealerComponent } from './dealers/adddealer/adddealer.component';
 
 const appRoutes: Routes = [
   { path: '', component: SecurityComponent },
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
   { path: 'ads', component: AdsComponent },
   { path: 'ad/:id', component: AdDetailsComponent },
   { path: 'dealers', component: DealersComponent },
+  { path: 'adddealer', component: AdddealerComponent },
   { path: '**', component: SecurityComponent },
   { path: 'favorites', component: FavoriteCarsComponent },
   ];
@@ -42,7 +44,8 @@ const appRoutes: Routes = [
     AdDetailsComponent,
     DealersComponent,
     FavoriteCarsComponent,
-    MyAdsComponent
+    MyAdsComponent,
+    AdddealerComponent
   ],
   imports: [
     BrowserModule,

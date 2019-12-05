@@ -2,11 +2,13 @@ package be.thomasmore.autoedgeservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Dealer {
-    private int id;
+    private String _id;
     private String name;
     private String street;
     private String number;
@@ -17,8 +19,8 @@ public class Dealer {
     private String phone;
     private String manufacturer;
 
-    public Dealer(int id, String name, String street, String number, String city, String postal, String provence, String country, String phone, String manufacturer) {
-        this.id = id;
+    public Dealer(String id, String name, String street, String number, String city, String postal, String provence, String country, String phone, String manufacturer) {
+        this._id = id;
         this.name = name;
         this.street = street;
         this.number = number;
@@ -30,15 +32,12 @@ public class Dealer {
         this.manufacturer = manufacturer;
     }
 
-    public Dealer() {
+    public String get_id() {
+        return _id;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getName() {

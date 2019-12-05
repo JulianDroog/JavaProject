@@ -1,6 +1,6 @@
 export class Dealer {
 
- constructor(public id: number,
+ constructor(public _id: string,
      public name: string,
       public street: string,
       public number: string,

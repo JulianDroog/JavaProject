@@ -12,6 +12,14 @@ export class DealerService {
   constructor(private http: HttpClient) { }
 
   getDealers(): Observable<Dealer[]>{
-    return this.http.get<Dealer[]>("http://localhost:8050/dealers/all");
+    return this.http.get<Dealer[]>("http://localhost:8050/dealers");
+  }
+
+  addDealer(dealer: Dealer){
+    return this.http.post<Dealer>("http://localhost:8050/dealers/dealer",dealer);
+  }
+
+  deleteDealer(dealerId: string){
+    return this.http.delete<Dealer>("http://localhost:8050/dealers/dealer/" + dealerId);
   }
 }

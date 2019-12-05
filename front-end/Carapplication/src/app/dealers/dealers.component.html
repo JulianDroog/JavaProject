@@ -1,5 +1,35 @@
-<p>dealers works!</p>
+<h2>Car Dealers</h2>
 
-<ul>
-    <li *ngFor="let d of (dealers | async)">{{d.name}} </li>
-    </ul>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Phone</th>
+        <th></th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let d of dealers">
+        <td>
+            {{d.name}}
+        </td>
+        <td>
+            {{d.city}}
+        </td>
+        <td>
+            {{d.country}}
+        </td>
+        <td>
+            {{d.phone}}
+        </td>
+        <td>
+            <a (click)="deleteDealer(d)" class="btn btn-danger" >
+                     Delete</a>
+        </td>
+    </tr>
+</tbody>
+</table>
+<a  class="btn btn-primary" routerLink="/adddealer" routerLinkActive="active"
+[routerLinkActiveOptions]="{ exact: true }">Add Dealer </a>

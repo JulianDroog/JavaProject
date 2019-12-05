@@ -15,12 +15,12 @@ import { CarsModule } from './cars/cars.module';
 import { MatSidenavModule, MatListModule, MatToolbarModule, MatButtonModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SecurityInterceptor } from './security/security.interceptor';
-import { AdsComponent } from 'src/ads/ads/ads.component';
-import { AdDetailsComponent } from 'src/ads/adDetails/ad-details/ad-details.component';
 import { DealersComponent } from './dealers/dealers.component';
 import { FavoriteCarsComponent } from './favorite-cars/favorite-cars/favorite-cars.component';
-import { MyAdsComponent } from 'src/ads/my-ads/my-ads.component';
 import { AdddealerComponent } from './dealers/adddealer/adddealer.component';
+import { MyAdsComponent } from './ads/my-ads/my-ads.component';
+import { AdsComponent } from './ads/ads/ads.component';
+import { AdDetailsComponent } from './ads/adDetails/ad-details/ad-details.component';
 
 const appRoutes: Routes = [
   { path: '', component: SecurityComponent },
@@ -30,6 +30,7 @@ const appRoutes: Routes = [
   { path: 'ad/:id', component: AdDetailsComponent },
   { path: 'dealers', component: DealersComponent },
   { path: 'adddealer', component: AdddealerComponent },
+  { path: 'changedealer/:id', component: AdddealerComponent },
   { path: '**', component: SecurityComponent },
   { path: 'favorites', component: FavoriteCarsComponent },
   ];

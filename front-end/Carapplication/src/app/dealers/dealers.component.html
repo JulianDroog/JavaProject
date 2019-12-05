@@ -25,7 +25,10 @@
             {{d.phone}}
         </td>
         <td>
-            <a (click)="deleteDealer(d)" class="btn btn-danger" >
+                <a class="btn btn-warning" routerLink="/changedealer/{{d._id}}" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" >
+                        Update</a>
+            <a class="btn btn-danger" (click)="deleteDealer(d)"  >
                      Delete</a>
         </td>
     </tr>

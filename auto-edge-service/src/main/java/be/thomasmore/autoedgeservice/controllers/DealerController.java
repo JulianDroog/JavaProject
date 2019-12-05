@@ -6,6 +6,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -49,6 +51,23 @@ public class DealerController {
 //
 //        return ResponseEntity.ok().build();
 //    }
+
+    @GetMapping("/dealer/{id}")
+    public Dealer getDealerById(@PathVariable("id") String id){
+        Dealer dealer = restTemplate.getForObject("http://dealers-service/dealers/search/findDealerBy_id?_id=" + id, Dealer.class);
+
+        return dealer;
+    }
+
+    @PutMapping("/dealer")
+    public ResponseEntity<String> putDealer(@RequestBody Dealer dealer){
+        List<HttpMessageConverter<?>> list = new ArrayList<>();
+        list.add(new MappingJackson2HttpMessageConverter());
+        restTemplate.setMessageConverters(list);
+
+        restTemplate.put("http://dealers-service/dealers/" + dealer.get_id(), dealer, String.class);
+        return ResponseEntity.ok().build();
+    }
 
 
     @GetMapping()

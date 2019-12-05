@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AdsService } from 'src/ads/services/ads.service';
+
 import { ActivatedRoute, Params } from '@angular/router';
-import { Car } from 'src/ads/models/car.model';
+import { AdsService } from '../../services/ads.service';
+import { Car } from '../../models/car.model';
+
 
 @Component({
   selector: 'app-ad-details',

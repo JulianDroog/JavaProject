@@ -59,6 +59,7 @@ export class MyAdsComponent implements OnInit {
   }
 
   setModal(id){
+    console.log(id);
     if(id=='0'){
       this.title = "New ad";
       this.nAd = {

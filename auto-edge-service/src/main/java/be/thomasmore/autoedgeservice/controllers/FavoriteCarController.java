@@ -4,6 +4,7 @@ import be.thomasmore.autoedgeservice.models.FavoriteCar;
 import be.thomasmore.autoedgeservice.models.GenericResponseWrapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -22,33 +23,31 @@ public class FavoriteCarController {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @ApiOperation(value = "Geeft alle favoriete auto's terug met de opgegeven userId",
+            response = FavoriteCar.class,
+            responseContainer = "List")
     @GetMapping("user/{userId}")
     public List<FavoriteCar> getFavoriteCarsByUserId(@PathVariable("userId") String userId) {
 
-        GenericResponseWrapper wrapper = restTemplate.getForObject("http://favorite-service/favoritecars/search/getAllFavoriteCarsByUserID?userid=" + userId, GenericResponseWrapper.class);
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://favorite-service/favoriteCars/search/getAllFavoriteCarsByUserId?userId=" + userId, GenericResponseWrapper.class);
 
-        List<FavoriteCar> favoriteCars = objectMapper.convertValue(wrapper.get_embedded().get("favoriteCars"), new TypeReference<List<FavoriteCar>>() { });
+        List<FavoriteCar> myFavoriteCars = objectMapper.convertValue(wrapper.get_embedded().get("favoriteCars"), new TypeReference<List<FavoriteCar>>() {});
 
-        return favoriteCars;
+        return myFavoriteCars;
     }
 
+    @ApiOperation(value = "post de opgegeven favoriete auto", response = FavoriteCar.class)
     @PostMapping("/favoriteCar")
     public ResponseEntity<String> postFavoriteCar(@RequestBody FavoriteCar favoriteCar){
 
-        FavoriteCar myFavoriteCar = new FavoriteCar(favoriteCar.getId(), favoriteCar.getCarID(), favoriteCar.getUserID(), favoriteCar.getMake(), favoriteCar.getModel());
-       // FavoriteCar myFavoriteCar = new FavoriteCar(favoriteCar.getId(), favoriteCar.getCarID(), favoriteCar.getUserID());
+        FavoriteCar myFavoriteCar = new FavoriteCar(
+                favoriteCar.getId(), favoriteCar.getCarId(), favoriteCar.getUserId(), favoriteCar.getMake(), favoriteCar.getModel(), favoriteCar.getType(), favoriteCar.getYear());
+
         ResponseEntity<String> result = restTemplate.postForEntity("http://favorite-service/favoritecars/", favoriteCar, String.class);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/favoriteCar/{favoriteCarId}")
-    public ResponseEntity deleteFavoriteCarById(@PathVariable("favoriteCarId") int favoriteCarId){
-
-        restTemplate.delete("http://favorite-service/favoritecars/" + favoriteCarId);
-
-        return ResponseEntity.ok().build();
-    }
-
+    @ApiOperation(value = "wijzig de opgegeven favoriete auto", response = FavoriteCar.class)
     @PutMapping("/favoriteCar")
     public ResponseEntity<String> putFavoriteCar(@RequestBody FavoriteCar favoriteCar){
         List<HttpMessageConverter<?>> list = new ArrayList<>();
@@ -56,6 +55,15 @@ public class FavoriteCarController {
 
         restTemplate.setMessageConverters(list);
         restTemplate.put("http://favorite-service/favoritecars/" + favoriteCar.getId(), favoriteCar, String.class);
+        return ResponseEntity.ok().build();
+    }
+
+    @ApiOperation(value = "verwijder een favoriete auto met de opgegeven id", response = FavoriteCar.class)
+    @DeleteMapping("/favoriteCar/{id}")
+    public ResponseEntity deleteFavoriteCarById(@PathVariable("id") Integer id){
+
+        restTemplate.delete("http://favorite-service/favoriteCars/favoriteCar/" + id);
+
         return ResponseEntity.ok().build();
     }
 }

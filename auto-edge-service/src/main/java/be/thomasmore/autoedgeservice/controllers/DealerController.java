@@ -4,6 +4,7 @@ import be.thomasmore.autoedgeservice.models.Dealer;
 import be.thomasmore.autoedgeservice.models.GenericResponseWrapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -28,6 +29,7 @@ public class DealerController {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @ApiOperation(value = "post de opgegeven nieuwe dealer", response = Dealer.class)
     @PostMapping("/dealer")
     public ResponseEntity<String> postDealerById(@RequestBody Dealer dealer) {
         Dealer newDealer = new Dealer(dealer.get_id(), dealer.getName(), dealer.getCity(), dealer.getCountry(), dealer.getNumber(), dealer.getPhone(), dealer.getPostal(), dealer.getProvence(), dealer.getStreet(), dealer.getManufacturer());
@@ -52,6 +54,7 @@ public class DealerController {
 //        return ResponseEntity.ok().build();
 //    }
 
+    @ApiOperation(value = "haal dealer op met opgegeven id", response = Dealer.class)
     @GetMapping("/dealer/{id}")
     public Dealer getDealerById(@PathVariable("id") String id){
         Dealer dealer = restTemplate.getForObject("http://dealers-service/dealers/search/findDealerBy_id?_id=" + id, Dealer.class);
@@ -59,6 +62,7 @@ public class DealerController {
         return dealer;
     }
 
+    @ApiOperation(value = "wijzig de opgegeven dealer", response = Dealer.class)
     @PutMapping("/dealer")
     public ResponseEntity<String> putDealer(@RequestBody Dealer dealer){
         List<HttpMessageConverter<?>> list = new ArrayList<>();
@@ -69,7 +73,9 @@ public class DealerController {
         return ResponseEntity.ok().build();
     }
 
-
+    @ApiOperation(value = "Geeft een lijst van alle dealers terug",
+            response = Dealer.class,
+            responseContainer = "List")
     @GetMapping()
     public List<Dealer> getAllDealers() {
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://dealers-service/dealers", GenericResponseWrapper.class);
@@ -80,7 +86,7 @@ public class DealerController {
         return dealers;
     }
 
-
+    @ApiOperation(value = "verwijder een dealer met de opgegeven id", response = Dealer.class)
     @DeleteMapping("/dealer/{id}")
     public ResponseEntity deleteDealerById(@PathVariable("id") String dealerId) {
 

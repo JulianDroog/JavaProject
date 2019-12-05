@@ -4,6 +4,7 @@ import be.thomasmore.autoedgeservice.models.Car;
 import be.thomasmore.autoedgeservice.models.GenericResponseWrapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -23,6 +24,7 @@ public class CarController {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @ApiOperation(value = "Deze methode maakt een nieuwe auto en schrijft deze weg naar de database", response = String.class)
     @PostMapping("/car")
     public ResponseEntity<String> postCar(@RequestBody Car auto){
         Car car = new Car(auto.get_id(), auto.getMake(), auto.getModel(), auto.getType(), auto.getYear(), auto.getTransmission(), auto.getCc(), auto.getHp(), auto.getDoors(), auto.getUserId());
@@ -34,6 +36,7 @@ public class CarController {
         return ResponseEntity.ok().build();
     }
 
+    @ApiOperation(value = "Deze methode geeft alle auto's van een opgegeven gebruiker", response = List.class)
     @GetMapping("/user/{userId}")
     public List<Car> getCarsByUserId(@PathVariable("userId") Integer userId){
         GenericResponseWrapper wrapper = restTemplate.getForObject(
@@ -45,6 +48,7 @@ public class CarController {
         return cars;
     }
 
+    @ApiOperation(value = "Deze methode geeft 1 auto object terug adhv de opgegeven auto id", response = Car.class)
     @GetMapping("/car/{id}")
     public Car getCarsByUserId(@PathVariable("id") String id){
         Car car = restTemplate.getForObject("http://auto-service/autos/search/getCarBy_id?_id=" + id, Car.class);
@@ -52,6 +56,7 @@ public class CarController {
         return car;
     }
 
+    @ApiOperation(value = "Deze methode geeft alle objecten terug die zich bevinden in de car tabel in de db", response = List.class)
     @GetMapping()
     public List<Car> getCars(){
         GenericResponseWrapper wrapper = restTemplate.getForObject(
@@ -63,6 +68,7 @@ public class CarController {
         return cars;
     }
 
+    @ApiOperation(value = "Deze methode past een opgegeven auto aan", response = String.class)
     @PutMapping("/car")
     public ResponseEntity<String> putCar(@RequestBody Car auto){
         List<HttpMessageConverter<?>> list = new ArrayList<>();
@@ -73,6 +79,7 @@ public class CarController {
         return ResponseEntity.ok().build();
     }
 
+    @ApiOperation(value = "Deze methode verwijdert de opgegeven auto", response = String.class)
     @DeleteMapping("/car/{carId}")
     public ResponseEntity deleteCarByCarId(@PathVariable("carId") String carId){
 

@@ -14,15 +14,21 @@ public class FavoriteCar {
     @Column(name="id")
     private int id;
 
-    @Column(name = "carID")
-    private String carID;
+    @Column(name = "carId")
+    private String carId;
 
-    @Column(name = "userID")
-    private String userID;
+    @Column(name = "userId")
+    private String userId;
 
     @Column(name = "make")
     private String make;
 
     @Column(name = "model")
     private String model;
+
+    @Column(name = "type")
+    private String type;
+
+    @Column(name = "year")
+    private int year;
 }

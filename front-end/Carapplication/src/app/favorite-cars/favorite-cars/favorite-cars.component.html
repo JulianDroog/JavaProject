@@ -1,4 +1,27 @@
-<div class="row">
-    <div class="panel-heading-divider">My favorites</div>
-    
+<div class="container">
+    <br>
+    <h4>My favorites</h4>
+    <br>
+    <div class="row" id="car">
+        <!-- Category Card -->
+        <div class="col-md-4" *ngFor="let car of favoriteCars">
+            <div class="card rounded">
+                <div class="card-image">
+                    <span class="card-notify-badge">{{car.year}}</span>
+                    <span class="card-notify-year">
+                        <a  (click)="deleteFavoriteCar(car)">
+                            <fa-icon [icon]="faHeart"></fa-icon>
+                        </a></span>
+                    <img class="img-fluid" alt="" src="../../../assets//images/placeholder-car.png" />
+                </div>
+                <div class="card-body text-center">
+                    <div class="car-title m-auto">
+                        <h5>{{car.make}} {{car.model}}</h5>
+                    </div>
+                    <a class="car-btn" routerLink="/ad/{{car.carId}}" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

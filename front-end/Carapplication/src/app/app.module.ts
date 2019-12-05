@@ -31,8 +31,8 @@ const appRoutes: Routes = [
   { path: 'dealers', component: DealersComponent },
   { path: 'adddealer', component: AdddealerComponent },
   { path: 'changedealer/:id', component: AdddealerComponent },
-  { path: '**', component: SecurityComponent },
   { path: 'favorites', component: FavoriteCarsComponent },
+  { path: '**', component: SecurityComponent },
   ];
 
 @NgModule({

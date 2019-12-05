@@ -9,5 +9,5 @@ import java.util.List;
 
 @CrossOrigin
 public interface FavoriteCarRepository extends JpaRepository<FavoriteCar, String> {
-    List<FavoriteCar> getAllFavoriteCarsByUserID(@Param("userID") String userID) ;
+    List<FavoriteCar> getAllFavoriteCarsByUserId(@Param("userId") String userId) ;
 }

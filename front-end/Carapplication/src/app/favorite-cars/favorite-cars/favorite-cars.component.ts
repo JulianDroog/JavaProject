@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoriteCar } from '../models/favorite-car.model';
 import { FavoriteCarsService } from '../favorite-cars.service';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-favorite-cars',
@@ -11,7 +12,7 @@ export class FavoriteCarsComponent implements OnInit {
   favoriteCars : FavoriteCar[] = [];
   favoriteCar: FavoriteCar = null;
   isFavorite:boolean = false;
-  favoriteIcon:string = "favorite_border";
+  faHeart = faHeart;
   constructor(private _favoriteCarsService: FavoriteCarsService) { 
     this.getAllFavorites();
   }
@@ -24,6 +25,17 @@ export class FavoriteCarsComponent implements OnInit {
       this.favoriteCars = result;
       console.log(result);
     })
+  }
+
+  deleteFavoriteCar(favoriteCar: FavoriteCar){
+    this._favoriteCarsService.deleteFavoriteCar(favoriteCar.id).subscribe(result => {
+      
+      console.log(result);
+    });
+    const index: number = this.favoriteCars.indexOf(favoriteCar);
+    if (index !== -1) {
+      this.favoriteCars.splice(index, 1);
+    }
   }
 
 }

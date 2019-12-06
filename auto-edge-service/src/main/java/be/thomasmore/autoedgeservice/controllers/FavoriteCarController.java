@@ -37,18 +37,17 @@ public class FavoriteCarController {
     }
 
     @ApiOperation(value = "post de opgegeven favoriete auto", response = FavoriteCar.class)
-    @PostMapping("/favoriteCar")
+    @PostMapping("/favoritecar")
     public ResponseEntity<String> postFavoriteCar(@RequestBody FavoriteCar favoriteCar){
 
         FavoriteCar myFavoriteCar = new FavoriteCar(
                 favoriteCar.getId(), favoriteCar.getCarId(), favoriteCar.getUserId(), favoriteCar.getMake(), favoriteCar.getModel(), favoriteCar.getType(), favoriteCar.getYear());
-
-        ResponseEntity<String> result = restTemplate.postForEntity("http://favorite-service/favoritecars/", favoriteCar, String.class);
+        ResponseEntity<String> result = restTemplate.postForEntity("http://favorite-service/favoritecars/", myFavoriteCar, String.class);
         return ResponseEntity.ok().build();
     }
 
     @ApiOperation(value = "wijzig de opgegeven favoriete auto", response = FavoriteCar.class)
-    @PutMapping("/favoriteCar")
+    @PutMapping("/favoritecar")
     public ResponseEntity<String> putFavoriteCar(@RequestBody FavoriteCar favoriteCar){
         List<HttpMessageConverter<?>> list = new ArrayList<>();
         list.add(new MappingJackson2HttpMessageConverter());
@@ -59,10 +58,10 @@ public class FavoriteCarController {
     }
 
     @ApiOperation(value = "verwijder een favoriete auto met de opgegeven id", response = FavoriteCar.class)
-    @DeleteMapping("/favoriteCar/{id}")
+    @DeleteMapping("/favoritecar/{id}")
     public ResponseEntity deleteFavoriteCarById(@PathVariable("id") Integer id){
 
-        restTemplate.delete("http://favorite-service/favoriteCars/favoriteCar/" + id);
+        restTemplate.delete("http://favorite-service/favoritecars/" + id);
 
         return ResponseEntity.ok().build();
     }

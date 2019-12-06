@@ -14,16 +14,16 @@ export class FavoriteCarsComponent implements OnInit {
   isFavorite:boolean = false;
   faHeart = faHeart;
   constructor(private _favoriteCarsService: FavoriteCarsService) { 
-    this.getAllFavorites();
+    
   }
 
   ngOnInit() {
+    this.getAllFavorites();
   }
 
   getAllFavorites(){
     this._favoriteCarsService.getAllFavoriteCarsByUserID(localStorage.getItem("id")).subscribe(result => {
       this.favoriteCars = result;
-      console.log(result);
     })
   }
 

@@ -46,7 +46,7 @@ public class CarController {
     }
 
     @GetMapping("/car/{id}")
-    public Car getCarsByUserId(@PathVariable("id") String id){
+    public Car getCarById(@PathVariable("id") String id){
         Car car = restTemplate.getForObject("http://auto-service/autos/search/getCarBy_id?_id=" + id, Car.class);
 
         return car;

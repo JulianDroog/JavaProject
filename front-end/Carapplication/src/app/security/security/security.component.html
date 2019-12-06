@@ -3,7 +3,7 @@
 <h2>Login</h2>
 <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
         <div *ngIf="message" class="alert alert-danger" role="alert">Username or password is incorrect</div>
-<p>Email:
+<p>Username:
 <input type="text" class="form-control" [(ngModel)]="model.username" name="name" required/></p>
 <p>Password:
 <input type="password" class="form-control" [(ngModel)]="model.password" name="password" required/></p>

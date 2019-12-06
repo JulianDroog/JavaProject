@@ -5,6 +5,7 @@ import { FavoriteCarsService } from 'src/app/favorite-cars/favorite-cars.service
 import { FavoriteCar } from 'src/app/favorite-cars/models/favorite-car.model';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { AuthenticateService } from 'src/app/security/services/authenticate.service';
 
 @Component({
   selector: 'app-ads',
@@ -17,9 +18,13 @@ export class AdsComponent implements OnInit {
   favoriteCar: FavoriteCar = null;
   faHeart = faHeart;
   isButtonFavoriteVisible:boolean = true;
+  loggedIn : boolean;
 
-  constructor(private _adsService : AdsService, private _favoriteCarSerice: FavoriteCarsService, private router: Router) { 
-    this.loadAllAds();
+  constructor(private _adsService : AdsService, private _favoriteCarSerice: FavoriteCarsService, private _authService: AuthenticateService, private router: Router) { 
+    this._authService.isLoggedin.subscribe(result => {
+      this.loggedIn = result;
+      this.loadAllAds();
+    })
   }
 
   loadAllAds(){
@@ -38,6 +43,8 @@ export class AdsComponent implements OnInit {
     this.isButtonFavoriteVisible = false;
     this.router.navigate(['/favorites']);
   }
+
+  
 
   ngOnInit() {
   }

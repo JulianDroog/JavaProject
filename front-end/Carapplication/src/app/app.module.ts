@@ -21,18 +21,19 @@ import { AdddealerComponent } from './dealers/adddealer/adddealer.component';
 import { MyAdsComponent } from './ads/my-ads/my-ads.component';
 import { AdsComponent } from './ads/ads/ads.component';
 import { AdDetailsComponent } from './ads/adDetails/ad-details/ad-details.component';
+import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes = [
-  { path: '', component: SecurityComponent },
-  { path: 'myAds', component: MyAdsComponent },
+  { path: '', component: AdsComponent },
+  { path: 'myAds', component: MyAdsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: SecurityComponent },
-  { path: 'ads', component: AdsComponent },
+  { path: 'login', component: SecurityComponent },
   { path: 'ad/:id', component: AdDetailsComponent },
-  { path: 'dealers', component: DealersComponent },
-  { path: 'adddealer', component: AdddealerComponent },
-  { path: 'changedealer/:id', component: AdddealerComponent },
-  { path: 'favorites', component: FavoriteCarsComponent },
-  { path: '**', component: SecurityComponent },
+  { path: 'dealers', component: DealersComponent, canActivate: [AuthGuard] },
+  { path: 'adddealer', component: AdddealerComponent, canActivate: [AuthGuard] },
+  { path: 'changedealer/:id', component: AdddealerComponent, canActivate: [AuthGuard] },
+  { path: 'favorites', component: FavoriteCarsComponent, canActivate: [AuthGuard] },
+  { path: '**', component: SecurityComponent, canActivate: [AuthGuard]},
   ];
 
 @NgModule({
@@ -63,7 +64,11 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: SecurityInterceptor,
+    multi: true
+    }],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

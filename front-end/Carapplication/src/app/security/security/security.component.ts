@@ -42,8 +42,9 @@ export class SecurityComponent implements OnInit {
       this._authenticateService.authenticate(this.model).subscribe(result => {
         localStorage.setItem("token",result.token);
         localStorage.setItem("id",result.id);
+        this._authenticateService.isLoggedin.next(result.token ? true : false);
         console.log("User is logged in!");
-        this.router.navigateByUrl('/ads');
+        this.router.navigateByUrl('/');
         }, 
         errorResponse => {
             // Login Error

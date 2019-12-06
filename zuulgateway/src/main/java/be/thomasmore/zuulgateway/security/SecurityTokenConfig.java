@@ -2,6 +2,7 @@ package be.thomasmore.zuulgateway.security;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.netflix.ribbon.proxy.annotation.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -35,7 +36,9 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter {
                 // allow all who are accessing "auth" service
                 .antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
                 // must be an admin if trying to access admin area (authentication is also required here)
-                .antMatchers("/cars" + "/admin/**").hasRole("ADMIN")
+                //                .antMatchers("/cars" + "/admin/**").hasRole("ADMIN")
+                // allow users who are accessing "/cars" and "cars/car/:id"
+                .antMatchers(HttpMethod.GET,"/cars", "/cars/car/**").permitAll()
                 // Any other request must be authenticated
                 .anyRequest().authenticated();
     }

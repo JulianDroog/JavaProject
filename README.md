@@ -33,3 +33,12 @@ Ook kunt u de frontend terugvinden.
 git clone https://github.com/JulianDroog/JavaProject.git
 ```
 ## Swagger endpoints
+### Car
+![Car controller](/images/CarController.PNG)
+![Car model](/images/CarModel.PNG)
+### Dealer
+![Dealer controller](/images/DealerController.PNG)
+![Dealer model](/images/DealerModel.PNG)
+### Favorite
+![Favorite controller](/images/FavoriteController.PNG)
+![Favorite model](/images/FavoriteModel.PNG)

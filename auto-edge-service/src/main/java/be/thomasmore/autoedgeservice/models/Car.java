@@ -1,23 +1,35 @@
 package be.thomasmore.autoedgeservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ApiModel(description = "klasse voor auto zoekertjes")
 public class Car {
-
+    @ApiModelProperty(notes = "de database genereert de id met autonummering")
     private String _id;
+    @ApiModelProperty(notes = "fabrikant van de auto")
     private String make;
+    @ApiModelProperty(notes = "model van de auto")
     private String model;
+    @ApiModelProperty(notes = "type van de auto")
     private String type;
+    @ApiModelProperty(notes = "bouwjaar van de auto")
     private Integer year;
+    @ApiModelProperty(notes = "transmissie van de auto")
     private String transmission;
+    @ApiModelProperty(notes = "aantal cc van de auto")
     private Integer cc;
+    @ApiModelProperty(notes = "aantal paardenkracht van de auto")
     private Integer hp;
+    @ApiModelProperty(notes = "aantal deuren van de auto")
     private Integer doors;
+    @ApiModelProperty(notes = "id van de gebruiker van de auto")
     private Integer userId;
 
     public Car(String _id, String make, String model, String type, Integer year, String transmission, Integer cc, Integer hp, Integer doors, Integer userId) {
